@@ -20,3 +20,15 @@ func ReadFile(path string) ([]string, error) {
 	}
 	return rows, nil
 }
+
+func ReadLine(path string) (string, error) {
+	file, err := os.Open(path)
+
+	if err != nil {
+		return "", err
+	}
+
+	scanner := bufio.NewScanner(file)
+	scanner.Scan()
+	return scanner.Text(), nil
+}

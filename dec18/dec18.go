@@ -92,10 +92,11 @@ func goRoutine(instructions []string, registers map[string]int, write chan<- int
 
 	for currentInstruction < len(instructions) {
 		parts := strings.Split(instructions[currentInstruction], " ")
-
+		fmt.Println(queue.head)
 		if queue.head != nil {
 			select {
 			case write <- queue.head.value:
+				syncWithMain <- fmt.Sprintf("s%d", prog)
 				queue.pop()
 			default:
 				break
@@ -104,7 +105,6 @@ func goRoutine(instructions []string, registers map[string]int, write chan<- int
 
 		switch parts[0] {
 		case "snd":
-			syncWithMain <- fmt.Sprintf("s%d", prog)
 			queue.push(parse(parts, registers))
 		case "set":
 			registers[parts[1]] = parse(parts, registers)
@@ -115,9 +115,13 @@ func goRoutine(instructions []string, registers map[string]int, write chan<- int
 		case "mod":
 			registers[parts[1]] %= parse(parts, registers)
 		case "rcv":
-			syncWithMain <- fmt.Sprintf("r%d", prog)
-			v := <-read
-			registers[parts[1]] = v
+			select {
+			case data := <- read:
+				syncWithMain <- fmt.Sprintf("r%d", prog)
+				registers[parts[1]] = data
+			default:
+				continue
+			}
 		case "jgz":
 			if registers[parts[1]] > 0 {
 				parsedInt, err := strconv.ParseInt(parts[2], 10, 0)
