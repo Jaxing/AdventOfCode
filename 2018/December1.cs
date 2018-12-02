@@ -2,17 +2,7 @@ using System;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 public class December1 {
-    static void Main(string[] args) {
-        if (args[1] == "1") {
-            string[] input = Regex.Split(args[2], ",");
-            Console.WriteLine(CalculateFrequency(input));
-        } else if (args[1] == "2") {
-            string[] input = Regex.Split(args[2], ",");
-            Console.WriteLine(firstRepeatedFrequency(input));
-        }
-    }
-
-    static int CalculateFrequency(String[] frequencies) {
+    public static int CalculateFrequency(String[] frequencies) {
         int frequency = 0;
 
         foreach (var freq in frequencies) {
@@ -21,7 +11,7 @@ public class December1 {
         return frequency;
     }
 
-    static int firstRepeatedFrequency(String[] frequencies) {
+    public static int firstRepeatedFrequency(String[] frequencies) {
         int frequency = 0;
         HashSet<int> encounteredFrequencies = new HashSet<int>();
         int i = 0;
