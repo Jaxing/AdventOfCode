@@ -22,6 +22,14 @@ public class Start {
                     Console.WriteLine(December2.findPackages(input));
                 }
                 break;
+            case "3":
+                if (taskNumber == "1") {
+                    var overlap = December3.overlap(input);
+                    Console.WriteLine(overlap.Count);
+                } else if (taskNumber == "2") {
+                    Console.WriteLine(December3.firstClaimNotOverlapping(input));
+                }
+                break;
             default:
                 throw new NotImplementedException();
         }
