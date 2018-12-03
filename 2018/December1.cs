@@ -1,5 +1,4 @@
 using System;
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
 public class December1 {
     public static int CalculateFrequency(String[] frequencies) {
