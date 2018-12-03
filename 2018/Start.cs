@@ -1,8 +1,10 @@
 using System;
 using System.IO;
+using System.Globalization;
 
 public class Start {
     static void Main(string[] args) {
+        DateTime start = DateTime.Now;
         string day = args[1];
         string taskNumber = args[2];
         string[] input = File.ReadAllLines(args[3]);
@@ -33,5 +35,7 @@ public class Start {
             default:
                 throw new NotImplementedException();
         }
+
+        Console.WriteLine("Ran in {0} ms", DateTime.Now.Subtract(start).TotalMilliseconds);
     }
 }
