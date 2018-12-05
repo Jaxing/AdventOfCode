@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 public class Start {
     static void Main(string[] args) {
@@ -30,6 +31,20 @@ public class Start {
                     Console.WriteLine(overlap.Count);
                 } else if (taskNumber == "2") {
                     Console.WriteLine(December3.firstClaimNotOverlapping(input));
+                }
+                break;
+            case "4":
+                if (taskNumber == "1") {
+                    Console.WriteLine(December4.sleepyNumber(input));
+                } else if (taskNumber == "2") {
+                    Console.WriteLine(December4.reliableSleeper(input));
+                }
+                break;
+            case "5":
+                if (taskNumber == "1") {
+                    Console.WriteLine(December5.unitsLeft(input[0]));
+                } else {
+                    Console.WriteLine(December5.findBestPolymer(input[0]));
                 }
                 break;
             default:
