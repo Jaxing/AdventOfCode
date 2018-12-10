@@ -47,6 +47,14 @@ public class Start {
                     Console.WriteLine(December5.findBestPolymer(input[0]));
                 }
                 break;
+            case "6":
+                if (taskNumber == "1") {
+                    Console.WriteLine(December6.largestArea(input));
+                } else {
+                    throw new NotImplementedException();
+                    Console.WriteLine(December5.findBestPolymer(input[0]));
+                }
+                break;
             default:
                 throw new NotImplementedException();
         }
