@@ -72,6 +72,37 @@ public class December6
         return areaOfIndex;
     }
 
+    public static int sizeOfSafeArea(string[] input) {
+        int safeArea = 0;
+        (int, int)[] intInput = new (int, int)[input.Length];
+
+        int rowStart = int.MaxValue;
+        int rowEnd = 0;
+        int colStart = int.MaxValue;
+        int colEnd = 0;
+
+        for (int i=0; i < input.Length; i++) {
+            intInput[i] = parsePos(input[i]);
+            rowStart = Math.Min(rowStart, intInput[i].Item2);
+            rowEnd = Math.Max(rowEnd, intInput[i].Item2);
+            colStart = Math.Min(colStart, intInput[i].Item1);
+            colEnd = Math.Max(colEnd, intInput[i].Item1);
+        }
+
+        for (int row=rowStart; row <= rowEnd; row++) {
+            for (int col=colStart; col <=colEnd; col++) {
+                int totalDistance = 0;
+
+                foreach (var pos in intInput) {
+                    totalDistance += distance(col, row, pos.Item1, pos.Item2);                   
+                }
+                if (totalDistance < 10000) {
+                    safeArea++;
+                }
+            }
+        }
+        return safeArea;
+    }
     public static int largestArea(string[] input) {
         (int, int)[] intInput = new (int, int)[input.Length];
         Dictionary<int, int> areaOfIndex = new Dictionary<int, int>(); 
