@@ -9,6 +9,20 @@ import (
 	"strconv"
 )
 
+func Min(x int, y int) int {
+	if x > y {
+		return y
+	}
+	return x
+}
+
+func Max(x int, y int) int {
+	if x < y {
+		return y
+	}
+	return x
+}
+
 func DownloadInput(year int, day int) (string, error) {
 	cookies, err := ReadFile("/home/jesper/code/AdventOfCode/cookies")
 	url := fmt.Sprintf("https://adventofcode.com/%d/day/%d/input", year, day)
