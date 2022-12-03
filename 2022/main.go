@@ -7,10 +7,8 @@ import (
 
 	"advent_of_code/2022/dec1"
 	"advent_of_code/2022/dec2"
+	"advent_of_code/2022/dec3"
 )
-
-type point struct {
-}
 
 func main() {
 	start := time.Now()
@@ -24,10 +22,12 @@ func main() {
 		fmt.Println(dec2.Task1())
 	case "dec2_2":
 		fmt.Println(dec2.Task2())
-	// case "dec3_1":
-	// 	fmt.Println(dec3.Task1())
-	// case "dec3_2":
-	// 	fmt.Println(dec3.Task2())
+	case "dec3_1":
+		var res = dec3.Task1()
+		fmt.Println(res)
+		// helpers.Submit(2022, 3, 1, res)
+	case "dec3_2":
+		fmt.Println(dec3.Task2())
 	// case "dec4_1":
 	// 	fmt.Println(dec4.Task1())
 	// case "dec4_2":
