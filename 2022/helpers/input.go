@@ -2,10 +2,13 @@ package helpers
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
 	"io/ioutil"
+	"mime/multipart"
 	"net/http"
 	"os"
+	"regexp"
 	"strconv"
 )
 
@@ -81,4 +84,40 @@ func ReadLine(path string) (string, error) {
 	scanner := bufio.NewScanner(file)
 	scanner.Scan()
 	return scanner.Text(), nil
+}
+
+func Submit(year int, day int, task int, answer int) (string, error) {
+	cookies, _ := ReadFile("/home/jesper/code/AdventOfCode/cookies")
+	url := fmt.Sprintf("https://adventofcode.com/%d/day/%d/answer", year, day)
+	method := "POST"
+
+	payload := &bytes.Buffer{}
+	writer := multipart.NewWriter(payload)
+	_ = writer.WriteField("level", strconv.Itoa(task))
+	_ = writer.WriteField("answer", strconv.Itoa(answer))
+	err := writer.Close()
+	if err != nil {
+		fmt.Println(err)
+		return "", err
+	}
+
+	client := &http.Client{}
+	req, _ := http.NewRequest(method, url, payload)
+	req.Header.Set("Cookie", fmt.Sprintf("session=%s", cookies[0]))
+	req.Header.Set("Content-Type", writer.FormDataContentType())
+	resp, err_req := client.Do(req)
+
+	if err_req != nil {
+		return "", err_req
+	}
+	defer resp.Body.Close()
+	body, err_resp := ioutil.ReadAll(resp.Body)
+	return ParseSubmitMessage(string(body)), err_resp
+}
+
+func ParseSubmitMessage(message string) string {
+	r, _ := regexp.Compile("<main>\n\t<article><p>(.*)</p></article>\n\t</main>")
+	match := r.FindStringSubmatch(message)
+
+	return match[1]
 }
