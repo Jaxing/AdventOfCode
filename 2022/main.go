@@ -8,6 +8,7 @@ import (
 	"advent_of_code/2022/dec1"
 	"advent_of_code/2022/dec2"
 	"advent_of_code/2022/dec3"
+	"advent_of_code/2022/dec4"
 )
 
 func main() {
@@ -28,10 +29,10 @@ func main() {
 		// helpers.Submit(2022, 3, 1, res)
 	case "dec3_2":
 		fmt.Println(dec3.Task2())
-	// case "dec4_1":
-	// 	fmt.Println(dec4.Task1())
-	// case "dec4_2":
-	// 	fmt.Println(dec4.Task2())
+	case "dec4_1":
+		fmt.Println(dec4.Task1())
+	case "dec4_2":
+		fmt.Println(dec4.Task2())
 	default:
 		fmt.Println("No such file")
 
