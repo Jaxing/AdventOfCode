@@ -10,6 +10,7 @@ import (
 	"advent_of_code/2022/dec3"
 	"advent_of_code/2022/dec4"
 	"advent_of_code/2022/dec5"
+	"advent_of_code/2022/dec6"
 	"advent_of_code/2022/dec7"
 )
 
@@ -39,6 +40,10 @@ func main() {
 		fmt.Println(dec5.Task1())
 	case "dec5_2":
 		fmt.Println(dec5.Task2())
+	case "dec6_1":
+		fmt.Println(dec6.Task1())
+	case "dec6_2":
+		fmt.Println(dec6.Task2())
 	case "dec7_1":
 		fmt.Println(dec7.Task1())
 	case "dec7_2":
