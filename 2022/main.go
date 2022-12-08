@@ -12,6 +12,7 @@ import (
 	"advent_of_code/2022/dec5"
 	"advent_of_code/2022/dec6"
 	"advent_of_code/2022/dec7"
+	"advent_of_code/2022/dec8"
 )
 
 func main() {
@@ -48,6 +49,10 @@ func main() {
 		fmt.Println(dec7.Task1())
 	case "dec7_2":
 		fmt.Println(dec7.Task2())
+	case "dec8_1":
+		fmt.Println(dec8.Task1())
+	case "dec8_2":
+		fmt.Println(dec8.Task2())
 	default:
 		fmt.Println("No such file")
 
